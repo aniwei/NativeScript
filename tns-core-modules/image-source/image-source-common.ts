@@ -1,5 +1,5 @@
 ﻿import * as utils from "utils/utils";
-import * as httpModule from "http";
+import * as httpModule from "../http";
 import * as imageAssetModule from "image-asset";
 
 var http: typeof httpModule;
