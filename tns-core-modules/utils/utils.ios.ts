@@ -6,6 +6,8 @@ import {
 
 export * from "./utils-common";
 
+let mainScreenScale;
+
 function isOrientationLandscape(orientation: number) {
     return orientation === UIDeviceOrientation.LandscapeLeft || orientation === UIDeviceOrientation.LandscapeRight;
 }
@@ -19,15 +21,15 @@ export module layout {
     }
 
     export function getDisplayDensity(): number {
-        return 1;
+        return mainScreenScale;
     }
 
     export function toDevicePixels(value: number): number {
-        return value * getDisplayDensity();
+        return value * mainScreenScale;
     }
 
     export function toDeviceIndependentPixels(value: number): number {
-        return value / getDisplayDensity();
+        return value / mainScreenScale;
     }
 }
 
@@ -136,3 +138,5 @@ class UIDocumentInteractionControllerDelegateImpl extends NSObject implements UI
         return this.getViewController().view.frame;
     }
 }
+
+mainScreenScale = ios.getter(UIScreen, UIScreen.mainScreen).scale;
